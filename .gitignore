@@ -1,19 +1,12 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
-
 # Compiled output
 /dist
 /tmp
 /out-tsc
 /bazel-out
 /Tesi-darwin-arm64
-/src/external/compiler/tesi/test.csv
 
 # Compiler output
 /src/external/compiler/tesi/.idea
-/src/external/compiler/tesi/aggregate-reports
-/src/external/compiler/tesi/original-module
-/src/external/compiler/tesi/refactored-module
-
 
 # Node
 /node_modules
@@ -51,5 +44,8 @@ testem.log
 Thumbs.db
 /DarioTintore-Tesi-darwin-arm64/
 /.scannerwork/
-/src/external/compiler/tesi/TestSmellDetector.jar
 /src/external/compiler/tesi/TestSmellDetector_OLD.jar
+/src/external/compiler/LocalExercises/
+/src/external/compiler/tesi/aggregate-reports/target/
+/src/external/compiler/tesi/original-module/target/
+/src/external/compiler/tesi/refactored-module/target/
