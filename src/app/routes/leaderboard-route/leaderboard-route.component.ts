@@ -5,6 +5,7 @@ import {ElectronService} from "ngx-electron";
 import {LeaderboardService} from "../../services/leaderboard/leaderboard.service";
 import {Solution} from "../../model/solution/solution";
 import {ExerciseService} from "../../services/exercise/exercise.service";
+import {ExerciseConfiguration} from "../../model/exercise/ExerciseConfiguration.model";
 
 @Component({
   selector: 'app-leaderboard-route',
@@ -19,6 +20,8 @@ export class LeaderboardRouteComponent implements OnInit {
   exerciseType !: number;
   exerciseName = this.route.snapshot.params['exercise'];
   isAutoValutative!: boolean;
+  exerciseConfiguration!: ExerciseConfiguration;
+
 
   constructor(private http: HttpClient,
               private router: Router,
@@ -36,7 +39,6 @@ export class LeaderboardRouteComponent implements OnInit {
     // GET CONFIG DATA FROM ELECTRON
     this._electronService.ipcRenderer.on('receiveConfigFilesFromLocal',(event,data)=>{
       this.zone.run( () => {
-        console.log(data);
         this.setupConfigFiles(data);
       })
     })
@@ -54,14 +56,16 @@ export class LeaderboardRouteComponent implements OnInit {
     if(!this.isAutoValutative)
       this.retrieveCode();
 
-    this.leaderboardService.getSolutionsByExerciseName(this.exerciseName).subscribe(data=>{
-      this.solutions = data;
-    })
-
   }
 
   setupConfigFiles(data:any){
+    this.exerciseConfiguration = data;
     this.isAutoValutative = data.auto_valutative;
+
+    this.leaderboardService.getSolutionsByExerciseName(this.exerciseConfiguration.exerciseId).subscribe(data=>{
+      this.solutions = data;
+    })
+
   }
 
   retrieveCode(){
