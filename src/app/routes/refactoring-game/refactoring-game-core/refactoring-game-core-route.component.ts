@@ -182,7 +182,7 @@ export class RefactoringGameCoreRouteComponent implements OnInit {
     this.smellList = []
     this.smellResult = []
     this.smellNumber = 0
-    this.refactoringResult = ""
+    this.exerciseSuccess = false;
   }
 
   startLoading(){
@@ -212,8 +212,6 @@ export class RefactoringGameCoreRouteComponent implements OnInit {
   }
 
   checkConfiguration(){
-    console.log("Smells allowed per configuration" + this.exerciseConfiguration.refactoring_game_configuration.smells_allowed)
-    console.log("Smells done" + this.smellNumber);
     if(this.refactoringResult.toString() == 'false')
       this.refactoringWarning = true
     if(this.exerciseConfiguration.refactoring_game_configuration.smells_allowed < this.smellNumber)
