@@ -28,6 +28,8 @@ async function checkSimilarity(exerciseConfiguration){
   else{
     let first_difference = total - first_coverage
     let second_difference = total - second_coverage
+    if(second_difference < first_difference)
+      return true;
     let percentage_difference = Math.abs(first_difference - second_difference)
     return percentage_difference <= acceptance;
   }
