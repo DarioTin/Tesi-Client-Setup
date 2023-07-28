@@ -81,7 +81,7 @@ ipcMain.on('compile',async (event, data) => {
   let result = await refactoring_service.doCompile(data)
   result.testResult = utils.cleanSuccessResponse(result.testResult)
   if(result.success)
-    result.smellResult = utils.cleanSmells(result.smellResult);
+    result.smellResult = utils.removeIgnoredSmells(result.smellResult, data[1]);
   console.log(result);
   mainWindow.webContents.send('refactoring-exercise-response', result)
 })

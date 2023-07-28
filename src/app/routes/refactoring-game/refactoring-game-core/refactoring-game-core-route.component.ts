@@ -57,6 +57,9 @@ export class RefactoringGameCoreRouteComponent implements OnInit {
   exerciseSuccess: boolean = false;
   smellNumberWarning: boolean = false;
   refactoringWarning: boolean = false;
+  originalCoverage: number = -1;
+  refactoredCoverage: number = -1;
+
   constructor(private codeService: CodeeditorService,
               private exerciseService: ExerciseService,
               private route:ActivatedRoute,
@@ -186,6 +189,8 @@ export class RefactoringGameCoreRouteComponent implements OnInit {
     this.exerciseSuccess = false;
     this.smellNumberWarning = false;
     this.refactoringWarning = false;
+    this.originalCoverage = -1;
+    this.refactoredCoverage = -1;
   }
 
   startLoading(){
@@ -201,6 +206,9 @@ export class RefactoringGameCoreRouteComponent implements OnInit {
     this.smells = data.smellResult
     this.refactoringResult = data.similarityResponse
     this.exerciseSuccess = data.success
+    this.originalCoverage = data.originalCoverage;
+    this.refactoredCoverage = data.refactoredCoverage;
+    console.log(data);
     this.stopLoading()
     if(this.exerciseSuccess){
       const json = JSON.parse(this.smells);
