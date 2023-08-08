@@ -2,7 +2,7 @@
   "todos":[
     {
       "text": "Effettuare il retrieval delle configurazioni per l'esericzio in locale come avviene in cloud",
-      "checked":false
+      "checked":true
     },
 
     {
@@ -11,7 +11,7 @@
     },
     {
       "text": "Aggiungere il blocco al click finquando non finisce la richiesta",
-      "checked":false
+      "checked":true
     },
     {
       "text": "Aggiungere Home",

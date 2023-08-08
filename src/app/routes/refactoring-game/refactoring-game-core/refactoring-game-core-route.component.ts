@@ -57,6 +57,9 @@ export class RefactoringGameCoreRouteComponent implements OnInit {
   exerciseSuccess: boolean = false;
   smellNumberWarning: boolean = false;
   refactoringWarning: boolean = false;
+  originalCoverage: number = -1;
+  refactoredCoverage: number = -1;
+
   constructor(private codeService: CodeeditorService,
               private exerciseService: ExerciseService,
               private route:ActivatedRoute,
@@ -181,8 +184,13 @@ export class RefactoringGameCoreRouteComponent implements OnInit {
     this.refactoringResult = ""
     this.smellList = []
     this.smellResult = []
+    this.methodList = [];
     this.smellNumber = 0
-    this.refactoringResult = ""
+    this.exerciseSuccess = false;
+    this.smellNumberWarning = false;
+    this.refactoringWarning = false;
+    this.originalCoverage = -1;
+    this.refactoredCoverage = -1;
   }
 
   startLoading(){
@@ -198,6 +206,9 @@ export class RefactoringGameCoreRouteComponent implements OnInit {
     this.smells = data.smellResult
     this.refactoringResult = data.similarityResponse
     this.exerciseSuccess = data.success
+    this.originalCoverage = data.originalCoverage;
+    this.refactoredCoverage = data.refactoredCoverage;
+    console.log(data);
     this.stopLoading()
     if(this.exerciseSuccess){
       const json = JSON.parse(this.smells);
@@ -212,8 +223,6 @@ export class RefactoringGameCoreRouteComponent implements OnInit {
   }
 
   checkConfiguration(){
-    console.log("Smells allowed per configuration" + this.exerciseConfiguration.refactoring_game_configuration.smells_allowed)
-    console.log("Smells done" + this.smellNumber);
     if(this.refactoringResult.toString() == 'false')
       this.refactoringWarning = true
     if(this.exerciseConfiguration.refactoring_game_configuration.smells_allowed < this.smellNumber)
@@ -261,7 +270,7 @@ export class RefactoringGameCoreRouteComponent implements OnInit {
         return 11;
       case 'Mystery Guest':
         return 12;
-      case 'Redundant Print':
+      case 'Print Statement':
         return 13;
       case 'Redundant Assertion':
         return 14;
