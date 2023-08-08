@@ -80,6 +80,7 @@ app.on('activate', function () {
 ipcMain.on('compile',async (event, data) => {
   let result = await refactoring_service.doCompile(data)
   result.testResult = utils.cleanSuccessResponse(result.testResult)
+  console.log(result)
   if(result.success)
     result.smellResult = utils.removeIgnoredSmells(result.smellResult, data[1]);
   console.log(result);
