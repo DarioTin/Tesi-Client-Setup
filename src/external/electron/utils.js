@@ -72,14 +72,16 @@ function cleanSuccessResponse(response){
 
 function removeIgnoredSmells(smells, exerciseConfiguration){
   const ignoredSmells = exerciseConfiguration["ignored_smells"];
-  let result = JSON.parse(smells);
-  if(ignoredSmells !== undefined){
+  console.log("Smells : " + smells);
+  if(ignoredSmells !== undefined && smells !== ''){
+    let result = JSON.parse(smells);
     ignoredSmells.forEach((ignored)=>{
       delete result[ignored];
     })
+    delete result['Exception Catching Throwing']
+    return JSON.stringify(result)
   }
-  delete result['Exception Catching Throwing']
-  return JSON.stringify(result)
+  return '';
 }
 
 function readFile(file){
