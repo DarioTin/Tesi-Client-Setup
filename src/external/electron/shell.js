@@ -9,9 +9,9 @@ dotenvExpand.expand(myEnv)
 const execMavenCommand = (cmd) => {
   let PROJECT_POM = process.env.ROOT_PATH + process.env.JUNIT_POM
   PROJECT_POM = PROJECT_POM.replace("//","/")
-  console.log("PROJECT_POM :" + PROJECT_POM)
+  console.log("PROJECT_POM : " + PROJECT_POM)
   return new Promise((resolve, reject) => {
-    console.log("PROJECT_POM :" + PROJECT_POM)
+    console.log("PROJECT_POM : " + PROJECT_POM)
     exec(cmd  + " -f " + "\"" + PROJECT_POM +"\"", (error, stdout, stderr) => {
       if (error) {
         if (error.code === 1) {

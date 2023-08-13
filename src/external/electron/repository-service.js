@@ -3,7 +3,7 @@ const utils = require('./utils')
 const fs = require("fs");
 
 async function cloneRepository(data) {
-  utils.deleteGitDirectory(process.env.ROOT_PATH + "src/external/compiler/LocalExercises")
+  await utils.deleteGitDirectory(process.env.ROOT_PATH + "src/external/compiler/LocalExercises")
   await sh.execGitCloneCommand(data.branchName, data.url)
 }
 
