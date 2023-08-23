@@ -2,9 +2,21 @@ const sh = require("./shell");
 const utils = require('./utils')
 const fs = require("fs");
 
+let path = require('path')
+const git = require('isomorphic-git')
+const http = require('isomorphic-git/http/node')
+const {branch} = require("isomorphic-git");
+
 async function cloneRepository(data) {
-  await utils.deleteGitDirectory(process.env.ROOT_PATH + "src/external/compiler/LocalExercises")
-  await sh.execGitCloneCommand(data.branchName, data.url)
+  const dir = process.env.ROOT_PATH + "src/external/compiler/LocalExercises"
+  utils.deleteGitDirectory(dir)
+  await git.clone({
+    fs,
+    http,
+    dir,
+    ref: data.branchName,
+    url: data.url
+  })
 }
 
 function getExerciseFilesFromLocal() {
